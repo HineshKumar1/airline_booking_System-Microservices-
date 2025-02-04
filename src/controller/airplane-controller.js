@@ -19,8 +19,10 @@ const cretaeAirPlane = async(req,res)=>{
         });
     } catch (error) {
         ErrorResponse.error = error
-        ErrorResponse.message = "Something went wrong will creating airplane"
+        console.log(error)
+        ErrorResponse.message = "Something went wrong while creating airplane"
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+
           ErrorResponse
         })
     }
