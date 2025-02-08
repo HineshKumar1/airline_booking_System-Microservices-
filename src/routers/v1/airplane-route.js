@@ -8,4 +8,8 @@ AirPlaneMiddlewares.validateCreateRequest,
 AirPlaneController.cretaeAirPlane
 );
 
+router.get('/',AirPlaneController.getAllAirplanes);
+
+router.get('/:id',AirPlaneController.getAirplane);
+
 module.exports = router;
