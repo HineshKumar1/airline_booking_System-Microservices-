@@ -90,10 +90,33 @@ const deleteAirplane = async (req, res) => {
 };
 
 
+const updateAirplane = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {capacity} = req.body;
 
+    const airplane = await AirPlaneService.updateAirplaneById(id,{capacity});
+
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Airplane record update successfully",
+      data: airplane,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(
+      error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR
+    ).json({
+      success: false,
+      message: error.message || "Something went wrong while updateing the airplane",
+    });
+  }
+};
 module.exports = {
   cretaeAirPlane,
   getAllAirplanes,
   getAirplane,
-  deleteAirplane
+  deleteAirplane,
+  updateAirplane
 };

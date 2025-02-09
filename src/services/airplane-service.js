@@ -40,7 +40,6 @@ const getAllAirplanes = async () => {
 const getAirplane = async (id) => {
   try {
     const airplane = await airplaneRepository.get(id);
-
     return airplane;
   } catch (error) {
 
@@ -75,4 +74,21 @@ const deleteAirplaneById = async (id) => {
   }
 };
 
-module.exports = { createAeroplane, getAllAirplanes, getAirplane , deleteAirplaneById};
+const updateAirplaneById = async(id,data)=>{
+  try {
+    const response = await airplaneRepository.update(id,data);
+    return response;
+  } catch (error) {
+    throw new AppError(
+      "Cannot update data of airplane",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
+
+module.exports = { createAeroplane, 
+  getAllAirplanes, 
+  getAirplane, 
+  deleteAirplaneById,
+  updateAirplaneById
+};
